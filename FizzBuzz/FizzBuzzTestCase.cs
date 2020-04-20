@@ -1,238 +1,118 @@
 ﻿using NUnit.Framework;
+using System.Linq;
 
 namespace FizzBuzz
 {
     [TestFixture]
     public class FizzBuzzTestCase
     {
-        [Test]
-        public void GivenNaturalNumber_And1IsNotDivisible_ShouldReturn1()
+        [TestCase(1, "1")]
+        //[TestCase(2, "2")]
+        [TestCase(4, "4")]
+        public void GivenNaturalNumber_AndNumberIsNotDivisibleBy3or5_ShouldReturnNumber(int number, string expected)
         {
-            //Arrange
-            int number = 1;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "1";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         //New Boundary?
-        [Test]
-        public void GivenNaturalNumber_And3IsDivisible_ShouldReturnFizz()
+        //[TestCase(3, "Fizz")]
+        [TestCase(6, "Fizz")]
+        [TestCase(9, "Fizz")]
+        public void GivenNaturalNumber_AndNumberIsDivisibleBy3_ShouldReturnFizz(int number, string expected)
         {
-            //Arrange
-            int number = 3;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "Fizz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void GivenNaturalNumber_And6IsDivisible_ShouldReturnFizz()
-        {
-            //Arrange
-            int number = 6;
-
-            //Act
-            string actual = GetFizzBuzz(number);
-            string expected = "Fizz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void GivenNaturalNumber_And9IsDivisible_ShouldReturnFizz()
-        {
-            //Arrange
-            int number = 9;
-
-            //Act
-            string actual = GetFizzBuzz(number);
-            string expected = "Fizz";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         //New Boundary?
-        [Test]
-        public void GivenNaturalNumber_And5IsDivisible_ShouldReturnBuzz()
+        //[TestCase(5, "Buzz")]
+        [TestCase(10, "Buzz")]
+        [TestCase(20, "Buzz")]
+        public void GivenNaturalNumber_AndNumberIsDivisibleBy5_ShouldReturnBuzz(int number, string expected)
         {
-            //Arrange
-            int number = 5;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "Buzz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void GivenNaturalNumber_And10IsDivisible_ShouldReturnBuzz()
-        {
-            //Arrange
-            int number = 10;
-
-            //Act
-            string actual = GetFizzBuzz(number);
-            string expected = "Buzz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void GivenNaturalNumber_And20IsDivisible_ShouldReturnBuzz()
-        {
-            //Arrange
-            int number = 20;
-
-            //Act
-            string actual = GetFizzBuzz(number);
-            string expected = "Buzz";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         //New Boundary?
-        [Test]
-        public void GivenNaturalNumber_And15IsDivisible_ShouldReturnFizzBuzz()
+        [TestCase(15, "FizzBuzz")]
+        [TestCase(30, "FizzBuzz")]
+        [TestCase(75, "FizzBuzz")]
+        public void GivenNaturalNumber_AndNumberIsDivisibleBy3and5_ShouldReturnFizzBuzz(int number, string expected)
         {
-            //Arrange
-            int number = 15;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "FizzBuzz";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void GivenNaturalNumber_And30IsDivisible_ShouldReturnFizzBuzz()
+        [TestCase(2, "Whiz")]
+        public void GivenPrimeNumber_AndNumberIsDivisibleBy1OrItself_ShouldReturnWhiz(int number, string expected)
         {
-            //Arrange
-            int number = 30;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "FizzBuzz";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void GivenNaturalNumber_And75IsDivisible_ShouldReturnFizzBuzz()
+        //New Boundary
+        [TestCase(3, "FizzWhiz")]
+        public void GivenPrimeNumber_And3IsDivisible_ShouldReturnFizzWizz(int number, string expected)
         {
-            //Arrange
-            int number = 75;
-
             //Act
             string actual = GetFizzBuzz(number);
-            string expected = "FizzBuzz";
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         //New Boundary
-        [Test]
-        public void GivenPrimeNumber_And2IsDivisible_ShouldReturnWizz()
+        [TestCase(5, "BuzzWhiz")]
+        public void GivenPrimeNumber_And5IsDivisible_ShouldReturnBuzzWizz(int number, string expected)
         {
-            //Arrange
-            int number = 2;
-
             //Act
-            string actual = GetFizzBuzz(number, true);
-            string expected = "Whiz";
+            string actual = GetFizzBuzz(number);
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         //New Boundary
-        [Test]
-        public void GivenPrimeNumber_And3IsDivisible_ShouldReturnFizzWizz()
+        [TestCase(15, "FizzBuzzWizz")]
+        public void GivenPrimeNumber_And15IsDivisible_ShouldReturnFizzBuzzWizz(int number, string expected)
         {
-            //Arrange
-            int number = 3;
-
             //Act
-            string actual = GetFizzBuzz(number, true);
-            string expected = "FizzWhiz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        //New Boundary
-        [Test]
-        public void GivenPrimeNumber_And5IsDivisible_ShouldReturnBuzzWizz()
-        {
-            //Arrange
-            int number = 5;
-
-            //Act
-            string actual = GetFizzBuzz(number, true);
-            string expected = "BuzzWhiz";
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        //New Boundary
-        [Test]
-        public void GivenPrimeNumber_And15IsDivisible_ShouldReturnFizzBuzzWizz()
-        {
-            //Arrange
-            int number = 15;
-
-            //Act
-            string actual = GetFizzBuzz(number, true);
-            string expected = "FizzBuzzWhiz";
+            string actual = GetFizzBuzz(number);
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
 
-        private string GetFizzBuzz(int number, bool prime = false)
+        private string GetFizzBuzz(int number)
         {
-            if (prime)
-            {
-                if (number % 3 == 0 && number % 5 == 0)
-                    return "FizzBuzzWhiz";
-                else if (number % 3 == 0)
-                    return "FizzWhiz";
-                else if (number % 5 == 0)
-                    return "BuzzWhiz";
-                else
-                    return "Whiz";
-            }
+            var isPrime = Enumerable.Range(1, number).Where(c => number % c == 0).SequenceEqual(new[] { 1, number });
+
+            if (number % 3 == 0 && number % 5 == 0)
+                return isPrime ? "FizzBuzzWhiz" : "FizzBuzz";
+            else if (number % 3 == 0)
+                return isPrime ? "FizzWhiz" : "Fizz";
+            else if (number % 5 == 0)
+                return isPrime ? "BuzzWhiz" : "Buzz";
             else
-            {
-                if (number % 3 == 0 && number % 5 == 0)
-                    return "FizzBuzz";
-                else if (number % 3 == 0)
-                    return "Fizz";
-                else if (number % 5 == 0)
-                    return "Buzz";
-            }
-
-            return number.ToString();
+                return isPrime ? "Whiz" : number.ToString();
         }
     }
 }
