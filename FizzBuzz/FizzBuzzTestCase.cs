@@ -89,7 +89,6 @@ namespace FizzBuzz
             Assert.AreEqual(expected, actual);
         }
 
-
         private string GetFizzBuzz(int number)
         {
             var isPrime = Enumerable.Range(1, number).Where(c => number % c == 0).SequenceEqual(new[] { 1, number });
@@ -100,8 +99,10 @@ namespace FizzBuzz
                 return isPrime ? "FizzWhiz" : "Fizz";
             else if (number % 5 == 0)
                 return isPrime ? "BuzzWhiz" : "Buzz";
+            else if (isPrime)
+                return "Whiz";
             else
-                return isPrime ? "Whiz" : number.ToString();
+                return number.ToString();
         }
     }
 }
