@@ -89,24 +89,13 @@ namespace FizzBuzz
             Assert.AreEqual(expected, actual);
         }
 
-        //New Boundary
-        [TestCase(15, "FizzBuzzWizz")]
-        public void GivenPrimeNumber_And15IsDivisible_ShouldReturnFizzBuzzWizz(int number, string expected)
-        {
-            //Act
-            string actual = GetFizzBuzz(number);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
 
         private string GetFizzBuzz(int number)
         {
             var isPrime = Enumerable.Range(1, number).Where(c => number % c == 0).SequenceEqual(new[] { 1, number });
 
             if (number % 3 == 0 && number % 5 == 0)
-                return isPrime ? "FizzBuzzWhiz" : "FizzBuzz";
+                return "FizzBuzz";
             else if (number % 3 == 0)
                 return isPrime ? "FizzWhiz" : "Fizz";
             else if (number % 5 == 0)
